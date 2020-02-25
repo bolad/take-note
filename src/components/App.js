@@ -1,6 +1,26 @@
 import React, { Component } from 'react';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    //initialize state
+    this.state = {
+      title: '',
+      body: ''
+    }
+
+    //bind methods
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  //Create a handleChange method to track state information
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
   render() {
     return (
       <div className="container-fluid">
@@ -9,6 +29,7 @@ class App extends Component {
             <form>
               <div className="form-group">
                 <input
+                  onChange={this.handleChange}
                   type="text"
                   name="title"
                   className="form-control no-border"
@@ -18,6 +39,7 @@ class App extends Component {
               </div>
               <div className="form-group">
                 <textarea
+                  onChange={this.handleChange}
                   type="text"
                   name="body"
                   className="form-control no-border"
