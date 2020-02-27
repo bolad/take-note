@@ -19,6 +19,13 @@ class App extends Component {
     this.increaseNumber = this.increaseNumber.bind(this);
   }
 
+  //lifecycle
+  componentDidMount() {
+    database.on('value', snapshot => {
+      this.setState({notes: snapshot.val()});
+    });
+  }
+
   //Create a handleChange method to track state information
   handleChange(e) {
     this.setState({
