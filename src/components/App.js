@@ -10,13 +10,11 @@ class App extends Component {
     this.state = {
       title: '',
       body: '',
-      number: 0
     }
 
     //bind methods
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.increaseNumber = this.increaseNumber.bind(this);
   }
 
   //lifecycle
@@ -46,10 +44,6 @@ class App extends Component {
       title: '',
       body: ''
     }
-  }
-
-  increaseNumber() {
-    this.setState({number: this.state.number + 1});
   }
 
   render() {
@@ -83,12 +77,6 @@ class App extends Component {
               <div className="form-group">
                 <button className="btn btn-primary col-sm-12">Save</button>
               </div>
-
-              <div className="form-group">
-                <button OnClick={this.increaseNumber}>Update Number</button>
-                <NumberComponent myNumber={this.state.number}/>
-              </div>
-
             </form>
           </div>
         </div>
