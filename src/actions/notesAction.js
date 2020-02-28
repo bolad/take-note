@@ -3,14 +3,19 @@ import { database } from '../firebase';
 
 export function getNotes() {
   //dispatch the action to the reducer
-  return dispatch() => {
+  return dispatch => {
     //get data from firebase
     database.on('value', snapshot => {
       //dispatch the type and payload to thne reducer
       dispatch({
-        type: 'GET_NOTES',
+        type: GET_NOTES,
         payload: snapshot.val()
       })
     })
   }
+}
+
+export function saveNote(note) {
+  return dispatch => database.push(note);
+
 }
