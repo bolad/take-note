@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { database } from '../firebase';
+import _ from 'lodash';
+//setup connection to redux store
+import { connect } from 'react-redux';
+import { getNotes, saveNote } from '../actions/notesAction';
 
 class App extends Component {
 
@@ -15,13 +18,13 @@ class App extends Component {
     //bind methods
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderNotes = this.renderNotes.bind(this);
   }
 
   //lifecycle
   componentDidMount() {
-    database.on('value', snapshot => {
-      this.setState({notes: snapshot.val()});
-    });
+    //get nodes from redux store as props
+    this.props.getNotes();
   }
 
   //Create a handleChange method to track state information
@@ -39,11 +42,23 @@ class App extends Component {
       title: this.state.title,
       body: this.state.body
     }
-    database.push(note);
+    this.props.saveNote(note);
     this.setState = {
       title: '',
       body: ''
     }
+  }
+
+  //render notes
+  renderNotes() {
+    return _.map(this.props.notes, (note, key) => {
+      return (
+        <div key="key">
+          <h2>{note.title}</h2>
+          <p>{note.body}</p>
+        </div>
+      );
+    });
   }
 
   render() {
@@ -78,6 +93,7 @@ class App extends Component {
                 <button className="btn btn-primary col-sm-12">Save</button>
               </div>
             </form>
+            {this.renderNotes()}
           </div>
         </div>
       </div>
@@ -85,13 +101,11 @@ class App extends Component {
   }
 }
 
-export default App;
-
-class NumberComponent extends Component {
-  render() {
-    return (
-      <h4>{this.props.myNumber}</h4>
-    );
+function mapStateToProps(state, ownProps) {
+  return {
+      notes: state.notes
   }
-
 }
+
+//map properties to the state and send getNotes and saveNote methods to the state
+export default connect(mapStateToProps, { getNotes, saveNote })(App);

@@ -4,6 +4,8 @@ import App from './components/App';
 //redux imports
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+//import middleware for asnychronous actions
+import thunk from 'redux-thunk';
 //this helps us see the redux state in the browser
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
@@ -13,7 +15,7 @@ import rootReducer from './reducers';
 
 // create redux store -> reducers -> actions -> actionType | applyMiddleware()
 // applyMiddleware will help us make ajax calls from the actions
-const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 //provide the store to react
 ReactDOM.render (
