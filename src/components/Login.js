@@ -5,9 +5,9 @@ class Login extends Component {
     return(
       <div className="container-fluid">
         <div className="row text-center">
-          <div className="col-sm-12 jumbotron">
+          <div className="col-sm-12 jumbotron" style={{marginTop: '-20px'}}>
             <h1>
-              Please Login with your favourite <p>Social Media Network</p>
+              Please Login with your favourite <b>Social Media Network</b>
             </h1>
           </div>
           <div className="col-sm-6">

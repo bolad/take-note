@@ -30,6 +30,13 @@ const Header = () => (
         </button>
         <Link className="navbar-brand" to="/">TAKE NOTE</Link>
       </div>
+      <div className="collapse navbar-collapse" id="myNavbar">
+        <ul className="nav navbar-nav navbar-right">
+          <li>
+            <Link to="/login">Login</Link> 
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 );
