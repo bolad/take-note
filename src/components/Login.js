@@ -7,7 +7,7 @@ class Login extends Component {
         <div className="row text-center">
           <div className="col-sm-12 jumbotron">
             <h1>
-              Please Login with oyur favourite <p>Social Media Network</p>
+              Please Login with your favourite <p>Social Media Network</p>
             </h1>
           </div>
           <div className="col-sm-6">

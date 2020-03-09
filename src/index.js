@@ -9,6 +9,8 @@ import thunk from 'redux-thunk';
 //this helps us see the redux state in the browser
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import Login from './components/Login';
 
 //define action types for your actions which will be processed by the reducers
 //and the reducers will return the states whic will inturn be given to the store
@@ -17,10 +19,35 @@ import rootReducer from './reducers';
 // applyMiddleware will help us make ajax calls from the actions
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
+const Header = () => (
+  <nav className="navbar navbar-default">
+    <div className="container-fluid">
+      <div className="navbar-header">
+        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span className="icon-bar" />
+          <span className="icon-bar" />
+          <span className="icon-bar" />
+        </button>
+        <Link className="navbar-brand" to="/">TAKE NOTE</Link>
+      </div>
+    </div>
+  </nav>
+);
+
+
+
 //provide the store to react
 ReactDOM.render (
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <div>
+        <Header />
+        <Switch>
+          <Route path="/" component={App} exact={true}/>
+          <Route path="/login" component={Login} exact={true}/>
+        </Switch>
+      </div>
+    </BrowserRouter>
   </Provider>,
   document.querySelector('#root')
 )
