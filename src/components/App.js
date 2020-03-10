@@ -114,5 +114,5 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-//map properties to the state and send getNotes and saveNote methods to the state
+//map properties to the state and map getNotes and saveNote methods to the state
 export default connect(mapStateToProps, { getNotes, saveNote, deleteNote })(App);
