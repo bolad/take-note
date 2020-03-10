@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { getNotes, saveNote, deleteNote } from '../actions/notesAction';
 import NoteCard from './NoteCard';
+import { getUser } from '../actions/userActions';
 
 class App extends Component {
 
@@ -26,6 +27,9 @@ class App extends Component {
   componentDidMount() {
     //get nodes from redux store as props
     this.props.getNotes();
+
+    //get user from redux store as props
+    this.props.getUser();
   }
 
   //Create a handleChange method to track state information
@@ -110,9 +114,10 @@ class App extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-      notes: state.notes
+      notes: state.notes,
+      user: state.user
   }
 }
 
 //map properties to the state and map getNotes and saveNote methods to the state
-export default connect(mapStateToProps, { getNotes, saveNote, deleteNote })(App);
+export default connect(mapStateToProps, { getNotes, saveNote, deleteNote, getUser })(App);
