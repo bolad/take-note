@@ -22,7 +22,7 @@ export function getNotes() {
         type: NOTES_STATUS,
         payload: false
       });
-    }, {
+    }, () => {
       //Wait until something changes and try again
       dispatch({
         type: NOTES_STATUS,
