@@ -22,5 +22,5 @@ export function twitterLogin() {
 }
 
 export function logout() {
-  return dispatch => auth.logout();
+  return dispatch => auth.signOut();
 }

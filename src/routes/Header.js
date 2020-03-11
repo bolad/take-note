@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getUser, logout } from '../actions/userActions'
+import { getUser, logout } from '../actions/userActions';
 
 class Header extends Component {
   render() {
@@ -25,11 +25,10 @@ class Header extends Component {
                   </li>
                 ) : (
                   <li>
-                    <Link to="/logout">Logout</Link>
+                    <Link to="/logout" onClick={() => this.props.logout()}>Logout</Link>
                   </li>
                 )
               }
-
             </ul>
           </div>
         </div>
@@ -41,6 +40,6 @@ class Header extends Component {
 function mapStateToProps(state, ownProps) {
   return {
     user: state.user
-  }
+  };
 }
 export default connect(mapStateToProps, { getUser, logout })(Header);
